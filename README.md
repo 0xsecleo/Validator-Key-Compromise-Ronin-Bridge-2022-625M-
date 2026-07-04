@@ -23,3 +23,12 @@ What happened: After a botched upgrade, the bridge's verification defaulted to "
 Root cause: An uninitialized/default value was mistakenly treated as "already validated" rather than "not yet validated."
 Fix: Default state must always fail-closed (unverified/untrusted), never fail-open. Zero/default values should never satisfy a security check by coincidence.
 Base takeaway: After ANY upgrade, explicitly test your default/uninitialized states. "What happens if this value is just zero?" should be a mandatory test case for every verification function you ship on Base.
+Donation / Rounding Attack — Euler Finance (2023, $197M)
+fix(liquidation): add health-check invariant on donateToReserves(),
+prevent self-liquidation exploiting undercollateralized state
+
+Ref: Euler Finance exploit (Mar 2023, $197M — later fully returned)
+Root cause: a newly-added donateToReserves() function let a user
+donate collateral tokens without a matching debt check, artificially
+worsening their own health factor, then self-liquidate for
+more than they should've been able to extract.
