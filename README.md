@@ -9,3 +9,4 @@ Root cause: attacker compromised 5 of 9 validator private keys
 (4 directly, 1 via a fake job offer / social engineering granting
 RPC access) — enough to forge withdrawal approvals.
 Root cause: Not a smart contract bug at all — human/operational security. Too few validators, too low a threshold relative to total validators, and no real-time monitoring caught the drain for nearly a week.
+Base takeaway: The scariest hacks aren't smart contract bugs — they're social engineering against your own team. Treat validator/multisig key security and employee security training as seriously as your Solidity code. Six days undetected is the real lesson here, not just the compromise itself.
