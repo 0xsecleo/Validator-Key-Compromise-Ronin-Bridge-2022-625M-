@@ -10,3 +10,12 @@ Root cause: attacker compromised 5 of 9 validator private keys
 RPC access) — enough to forge withdrawal approvals.
 Root cause: Not a smart contract bug at all — human/operational security. Too few validators, too low a threshold relative to total validators, and no real-time monitoring caught the drain for nearly a week.
 Base takeaway: The scariest hacks aren't smart contract bugs — they're social engineering against your own team. Treat validator/multisig key security and employee security training as seriously as your Solidity code. Six days undetected is the real lesson here, not just the compromise itself.
+Faulty Message Verification — Nomad Bridge (2022, $190M)
+fix(replica): require non-zero root to be explicitly proven, remove
+default-trusted 0x00 initialization value
+
+Ref: Nomad Bridge exploit (Aug 2022, $190M — "the crowdsourced hack")
+Root cause: a routine upgrade set the trusted root to 0x00 by
+default, which meant ANY message with a 0x00 proof was treated as
+already-proven/valid — attackers just copy-pasted the first exploit
+transaction with new parameters, and hundreds of copycats joined in.
