@@ -34,3 +34,4 @@ worsening their own health factor, then self-liquidate for
 more than they should've been able to extract.
 What happened: The attacker exploited a new "donate to reserves" feature to intentionally tank their own account health, then triggered self-liquidation under conditions the liquidation logic didn't correctly account for — extracting far more value than legitimately possible.
 Root cause: A newly shipped feature (donation function) interacted with existing liquidation logic in a way that wasn't tested together — each function was "safe" in isolation, but the combination wasn't.
+Fix: Any new function that touches collateral/debt accounting needs to be re-audited against ALL existing financial logic, not just tested standalone. Invariant testing (e.g., "health factor can never be manipulated by the position holder to their own benefit") should be automated in CI.
