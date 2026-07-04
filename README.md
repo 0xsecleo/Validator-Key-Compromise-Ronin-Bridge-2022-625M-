@@ -19,3 +19,4 @@ Root cause: a routine upgrade set the trusted root to 0x00 by
 default, which meant ANY message with a 0x00 proof was treated as
 already-proven/valid — attackers just copy-pasted the first exploit
 transaction with new parameters, and hundreds of copycats joined in.
+What happened: After a botched upgrade, the bridge's verification defaulted to "trusted" for a specific proof value. Anyone submitting a message with that trivial value could withdraw funds — no real proof needed. It became one of the first fully crowdsourced hacks, with hundreds of unrelated wallets copying the exploit within hours.
