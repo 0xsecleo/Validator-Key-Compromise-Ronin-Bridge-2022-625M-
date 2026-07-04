@@ -22,3 +22,4 @@ transaction with new parameters, and hundreds of copycats joined in.
 What happened: After a botched upgrade, the bridge's verification defaulted to "trusted" for a specific proof value. Anyone submitting a message with that trivial value could withdraw funds — no real proof needed. It became one of the first fully crowdsourced hacks, with hundreds of unrelated wallets copying the exploit within hours.
 Root cause: An uninitialized/default value was mistakenly treated as "already validated" rather than "not yet validated."
 Fix: Default state must always fail-closed (unverified/untrusted), never fail-open. Zero/default values should never satisfy a security check by coincidence.
+Base takeaway: After ANY upgrade, explicitly test your default/uninitialized states. "What happens if this value is just zero?" should be a mandatory test case for every verification function you ship on Base.
