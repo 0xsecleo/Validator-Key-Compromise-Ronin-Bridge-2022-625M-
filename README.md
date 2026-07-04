@@ -8,3 +8,4 @@ ever at the time), attributed to Lazarus Group
 Root cause: attacker compromised 5 of 9 validator private keys
 (4 directly, 1 via a fake job offer / social engineering granting
 RPC access) — enough to forge withdrawal approvals.
+Root cause: Not a smart contract bug at all — human/operational security. Too few validators, too low a threshold relative to total validators, and no real-time monitoring caught the drain for nearly a week.
