@@ -59,3 +59,4 @@ Root cause: governance proposals could pass AND execute in a single
 transaction if the proposer held >2/3 voting power at that instant
 — attacker flash-loaned enough governance tokens to self-approve a
 malicious proposal that drained the protocol treasury, all in one tx.
+What happened: The attacker flash-loaned enough of the governance token to instantly control a supermajority, submitted and passed a malicious proposal, and had it execute — draining the treasury — all within a single transaction, before repaying the flash loan.
