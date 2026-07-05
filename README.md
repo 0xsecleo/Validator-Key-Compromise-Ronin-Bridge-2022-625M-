@@ -36,3 +36,13 @@ What happened: The attacker exploited a new "donate to reserves" feature to inte
 Root cause: A newly shipped feature (donation function) interacted with existing liquidation logic in a way that wasn't tested together — each function was "safe" in isolation, but the combination wasn't.
 Fix: Any new function that touches collateral/debt accounting needs to be re-audited against ALL existing financial logic, not just tested standalone. Invariant testing (e.g., "health factor can never be manipulated by the position holder to their own benefit") should be automated in CI.
 Base takeaway: Most real hacks in 2023-2024 aren't single obvious bugs — they're safe-looking features that break an invariant elsewhere in the system. Every new function shipped to a Base protocol should be tested against your full existing surface, not in isolation.
+Oracle Manipulation — Mango Markets (2022, $114M)
+fix(collateral): cap borrowable value against illiquid/thin-market
+perp positions, add oracle deviation circuit breaker
+
+Ref: Mango Markets exploit (Oct 2022, $114M, "technically legal"
+governance-vote drama afterward)
+Root cause: attacker used two accounts to pump MNGO perp price
+10x+ via low-liquidity spot trades, then used the inflated paper
+value as collateral to borrow out nearly all other assets on the
+platform.
