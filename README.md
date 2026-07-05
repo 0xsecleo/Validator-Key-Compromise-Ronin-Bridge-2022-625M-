@@ -48,3 +48,4 @@ value as collateral to borrow out nearly all other assets on the
 platform.
 What happened: The attacker self-traded MNGO token price up massively on thin liquidity, which inflated the paper value of their perp position, which the protocol then accepted at face value as collateral for borrowing everything else.
 Root cause: No limit on how much of the protocol's total liquidity could be borrowed against a single, self-referential, illiquid asset's inflated price.
+Fix: Cap collateral value contribution per asset, especially thinly-traded/self-listed tokens. Never let a position's own market impact become the basis for borrowing against the rest of the protocol.
