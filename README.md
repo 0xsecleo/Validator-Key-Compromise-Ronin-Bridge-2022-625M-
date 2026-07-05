@@ -50,3 +50,12 @@ What happened: The attacker self-traded MNGO token price up massively on thin li
 Root cause: No limit on how much of the protocol's total liquidity could be borrowed against a single, self-referential, illiquid asset's inflated price.
 Fix: Cap collateral value contribution per asset, especially thinly-traded/self-listed tokens. Never let a position's own market impact become the basis for borrowing against the rest of the protocol.
 Base takeaway: If your Base lending/perp protocol allows a native or low-liquidity token as collateral, hard-cap its influence on total borrowable value regardless of reported price. Illiquid collateral is manipulable collateral.
+Governance Flash Loan Attack — Beanstalk (2022, $182M)
+fix(governance): add timelock delay between proposal pass and
+execution, require sustained token holding (no flash-loanable votes)
+
+Ref: Beanstalk Farms exploit (Apr 2022, $182M)
+Root cause: governance proposals could pass AND execute in a single
+transaction if the proposer held >2/3 voting power at that instant
+— attacker flash-loaned enough governance tokens to self-approve a
+malicious proposal that drained the protocol treasury, all in one tx.
