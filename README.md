@@ -62,3 +62,4 @@ malicious proposal that drained the protocol treasury, all in one tx.
 What happened: The attacker flash-loaned enough of the governance token to instantly control a supermajority, submitted and passed a malicious proposal, and had it execute — draining the treasury — all within a single transaction, before repaying the flash loan.
 Root cause: No time delay between a governance proposal passing and its execution, and voting power based on instantaneous token balance rather than sustained/locked holdings.
 Fix: Require a timelock (24-72h minimum) between proposal approval and execution. Use snapshot-based or vote-escrowed (veToken) voting power so flash loans can't manufacture instant governance control.
+Base takeaway: If your Base protocol has on-chain governance controlling treasury or critical parameters, flash-loanable voting power is an open door. Timelocks aren't bureaucracy — they're your only real defense against single-transaction governance attacks.
